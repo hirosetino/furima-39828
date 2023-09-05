@@ -7,15 +7,16 @@
 | nickname           | string | null: false               |
 | encrypted_password | string | null: false               |
 | email              | string | null: false, unique: true |
-| full_name          | string | null: false               |
-| full_name_kana     | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| last_name_kana     | string | null: false               |
+| first_name_kana    | string | null: false               |
 | birth_date         | date   | null: false               |
 
 ### Association
 
 - has_many :items
-- has_one :order
-- belongs_to :history
+- has_many :orders
 
 ## items テーブル
 
@@ -26,7 +27,7 @@
 | category_id      | integer    | null: false                    |
 | state_id         | integer    | null: false                    |
 | shipping_cost_id | integer    | null: false                    |
-| prefectures_id   | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
 | days_to_ship_id  | integer    | null: false                    |
 | price            | integer    | null: false                    |
 | user             | references | null: false, foreign_key: true |
@@ -35,14 +36,14 @@
 
 - belongs_to :user
 - has_one :order
-- belongs_to :history
 
 ## orders テーブル
 
 | Column             | Type       | Option                         |
 | ------------------ | ---------- | ------------------------------ |
+| history            | references | null: false, foreign_key: true |
 | post_code          | string     | null: false                    |
-| prefectures_id     | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | municipalities     | string     | null: false                    |
 | street_address     | string     | null: false                    |
 | building_name      | string     |                                |
@@ -50,8 +51,7 @@
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
+- belongs_to :history
 
 ## histories
 
@@ -62,5 +62,5 @@
 
 ### Association
 
-- has_many :users
-- has_many :items
+- belongs_to :user
+- belongs_to :item
