@@ -15,6 +15,7 @@
 
 - has_many :items
 - has_one :order
+- belongs_to :history
 
 ## items テーブル
 
@@ -34,6 +35,7 @@
 
 - belongs_to :user
 - has_one :order
+- belongs_to :history
 
 ## orders テーブル
 
