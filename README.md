@@ -18,40 +18,47 @@
 
 ## items テーブル
 
-| Column        | Type       | Option                         |
-| ------------- | ---------- | ------------------------------ |
-| name          | string     | null: false                    |
-| content       | text       | null: false                    |
-| category      | string     | null: false                    |
-| state         | string     | null: false                    |
-| shipping_cost | string     | null: false                    |
-| shipping_area | string     | null: false                    |
-| days_to_ship  | string     | null: false                    |
-| price         | integer    | null: false                    |
-| user          | references | null: false, foreign_key: true |
+| Column           | Type       | Option                         |
+| ---------------- | ---------- | ------------------------------ |
+| name             | string     | null: false                    |
+| content          | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| state_id         | integer    | null: false                    |
+| shipping_cost_id | integer    | null: false                    |
+| prefectures_id   | integer    | null: false                    |
+| days_to_ship_id  | integer    | null: false                    |
+| price            | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :order
+- has_one :order
 
 ## orders テーブル
 
 | Column             | Type       | Option                         |
 | ------------------ | ---------- | ------------------------------ |
-| user               | references | null: false, foreign_key: true |
-| item               | references | null: false, foreign_key: true |
-| credit_number      | integer    | null: false                    |
-| credit_expiry_date | string     | null: false                    |
-| credit_cvv         | integer    | null: false                    |
 | post_code          | string     | null: false                    |
-| prefectures        | string     | null: false                    |
+| prefectures_id     | integer    | null: false                    |
 | municipalities     | string     | null: false                    |
-| street_address     | integer    | null: false                    |
+| street_address     | string     | null: false                    |
 | building_name      | string     |                                |
 | telephone_number   | string     | null: false                    |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :item
+
+## histories
+
+| Column             | Type       | Option                         |
+| ------------------ | ---------- | ------------------------------ |
+| user               | references | null: false, foreign_key: true |
+| item               | references | null: false, foreign_key: true |
+
+### Association
+
+- has_many :users
 - has_many :items
