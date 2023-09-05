@@ -4,13 +4,11 @@
 
 | Column             | Type   | Option                    |
 | ------------------ | ------ | ------------------------- |
-| nickname           | string | null: false, unique: true |
+| nickname           | string | null: false               |
 | encrypted_password | string | null: false               |
-| email              | string | null: false               |
-| last_name          | string | null: false               |
-| first_name         | string | null: false               |
-| last_name_kana     | string | null: false               |
-| first_name_kana    | string | null: false               |
+| email              | string | null: false, unique: true |
+| full_name          | string | null: false               |
+| full_name_kana     | string | null: false               |
 | birth_date         | date   | null: false               |
 
 ### Association
@@ -46,12 +44,12 @@
 | credit_number      | integer    | null: false                    |
 | credit_expiry_date | string     | null: false                    |
 | credit_cvv         | integer    | null: false                    |
-| post_code          | integer    | null: false                    |
+| post_code          | string     | null: false                    |
 | prefectures        | string     | null: false                    |
 | municipalities     | string     | null: false                    |
 | street_address     | integer    | null: false                    |
 | building_name      | string     |                                |
-| telephone_number   | integer    | null: false                    |
+| telephone_number   | string     | null: false                    |
 
 ### Association
 
