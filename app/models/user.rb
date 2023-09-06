@@ -12,10 +12,10 @@ class User < ApplicationRecord
   VALID_FIRST_NAME_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
   validates :first_name, presence: true, format: { with: VALID_FIRST_NAME_REGEX }
 
-  VALID_LAST_NAME_KANA_REGEX = /\A[ァ-ヶ]+\z/
+  VALID_LAST_NAME_KANA_REGEX = /\A[ァ-ヶー]+\z/
   validates :last_name_kana, presence: true, format: { with: VALID_LAST_NAME_KANA_REGEX }
 
-  VALID_FIRST_NAME_KANA_REGEX = /\A[ァ-ヶ]+\z/
+  VALID_FIRST_NAME_KANA_REGEX = /\A[ァ-ヶー]+\z/
   validates :first_name_kana, presence: true, format: { with: VALID_FIRST_NAME_KANA_REGEX }
 
   validates :birth_date, presence: true
