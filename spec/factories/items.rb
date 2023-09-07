@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    image            { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'sample_image.jpg'), 'image/jpeg') }
     name             { Faker::Commerce.product_name }
     content          { Faker::Lorem.sentence }
     category_id      { '2' }
@@ -11,5 +10,9 @@ FactoryBot.define do
     price            { '300' }
 
     association :user
+
+    after(:build) do |item|
+      item.image.attach(io: File.open('public/images/sample_image.jpg'), filename: 'sample_image.jpg')
+    end
   end
 end
