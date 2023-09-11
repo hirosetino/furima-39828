@@ -14,4 +14,9 @@ class OrderHistory
         validates :user
         validates :item
     end
-  end
+
+    def save
+        order = Order.create(post_code: post_code, prefecture_id: prefecture_id, municipalities: municipalities, street_address: street_address, telephone_number: telephone_number, history: history.id)
+        Address.create(user: user.id, item: item.id)
+    end
+end
