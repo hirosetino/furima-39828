@@ -1,3 +1,3 @@
 class Order < ApplicationRecord
-    balongs_to :history
+    belongs_to :history
 end
