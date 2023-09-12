@@ -7,7 +7,7 @@ RSpec.describe HistoryOrder, type: :model do
 
   describe '商品購入機能' do
     context '商品購入できる場合' do
-        it 'post_code, prefecture_id, municipalities, street_address, building_name, telephone_number, user_id, item_idが存在すれば購入できる' do
+        it 'post_code, prefecture_id, municipalities, street_address, building_name, telephone_number, user_id, item_id, tokenが存在すれば購入できる' do
           expect(@history_order).to be_valid
         end
         it 'building_nameが無くても購入できる' do
@@ -51,6 +51,11 @@ RSpec.describe HistoryOrder, type: :model do
         @history_order.item_id = ''
         @history_order.valid?
         expect(@history_order.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'tokenが空だと購入できない' do
+        @history_order.token = ''
+        @history_order.valid?
+        expect(@history_order.errors.full_messages).to include("Token can't be blank")
       end
       it 'post_codeに-がないと購入できない' do
         @history_order.post_code = '1234567'

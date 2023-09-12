@@ -1,6 +1,6 @@
 class HistoryOrder
     include ActiveModel::Model
-    attr_accessor :post_code, :prefecture_id, :municipalities, :street_address, :building_name, :telephone_number, :user_id, :item_id
+    attr_accessor :post_code, :prefecture_id, :municipalities, :street_address, :building_name, :telephone_number, :user_id, :item_id, :token
 
     with_options presence: true do
         validates :post_code,  format: { with: /\A\d{3}-\d{4}\z/ }
@@ -10,6 +10,7 @@ class HistoryOrder
         validates :telephone_number, numericality: { only_integer: true },length: { minimum: 10, maximum: 11 }
         validates :user_id
         validates :item_id
+        validates :token
     end
 
     def save
