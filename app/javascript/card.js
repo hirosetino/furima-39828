@@ -1,5 +1,4 @@
 const pay = () => {
-    console.log("abc");
     const publicKey = gon.public_key;
     const payjp = Payjp(publicKey);
     const elements = payjp.elements();
@@ -18,7 +17,7 @@ const pay = () => {
             } else {
                 const token = response.id;
                 const renderDom = document.getElementById("charge-form");
-                const tokenObj = `<input value=${token} name='token' type="hidden">`;
+                const tokenObj = `<input value=${token} name='token' ">`;
                 renderDom.insertAdjacentHTML("beforeend", tokenObj);
             }
             numberElement.clear();
