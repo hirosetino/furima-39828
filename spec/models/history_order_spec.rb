@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe HistoryOrder, type: :model do
   before do
-    @history_order = FactoryBot.build(:history_order)
+    @user = FactoryBot.create(:user)
+    sleep(1)
+    @item = FactoryBot.create(:item)
+    sleep(1)
+    @history_order = FactoryBot.build(:history_order, user_id: @user.id, item_id: @item.id)
   end
 
   describe '商品購入機能' do
@@ -70,22 +74,22 @@ RSpec.describe HistoryOrder, type: :model do
       it 'telephone_numberに全角数字が入っていると購入できない' do
         @history_order.telephone_number = '123456789０'
         @history_order.valid?
-        expect(@history_order.errors.full_messages).to include('Telephone number is not a number')
+        expect(@history_order.errors.full_messages).to include("Telephone number is invalid")
       end
       it 'telephone_numberに文字が入っていると購入できない' do
         @history_order.telephone_number = '123456789十'
         @history_order.valid?
-        expect(@history_order.errors.full_messages).to include('Telephone number is not a number')
+        expect(@history_order.errors.full_messages).to include("Telephone number is invalid")
       end
       it 'telephone_numberが9桁以下だと購入できない' do
         @history_order.telephone_number = '123456789'
         @history_order.valid?
-        expect(@history_order.errors.full_messages).to include('Telephone number is too short (minimum is 10 characters)')
+        expect(@history_order.errors.full_messages).to include("Telephone number is invalid")
       end
       it 'telephone_numberが12桁以上だと購入できない' do
         @history_order.telephone_number = '123456789012'
         @history_order.valid?
-        expect(@history_order.errors.full_messages).to include('Telephone number is too long (maximum is 11 characters)')
+        expect(@history_order.errors.full_messages).to include("Telephone number is invalid")
       end
     end
   end

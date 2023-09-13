@@ -8,7 +8,7 @@ class HistoryOrder
     validates :prefecture_id, numericality: { other_than: 1 }
     validates :municipalities
     validates :street_address
-    validates :telephone_number, numericality: { only_integer: true }, length: { minimum: 10, maximum: 11 }
+    validates :telephone_number, format: { with: /\A[0-9]{10,11}\z/ }
     validates :user_id
     validates :item_id
     validates :token
