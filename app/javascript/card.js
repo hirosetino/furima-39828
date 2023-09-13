@@ -1,4 +1,5 @@
 const pay = () => {
+    console.log("abc");
     const publicKey = gon.public_key;
     const payjp = Payjp(publicKey);
     const elements = payjp.elements();
@@ -28,6 +29,6 @@ const pay = () => {
         e.preventDefault();
     });
 };
-  
+
 window.addEventListener("load", pay);
 window.addEventListener("turbo:render", pay);
